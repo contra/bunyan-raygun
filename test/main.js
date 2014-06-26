@@ -12,6 +12,7 @@ describe('bunyan-raygun', function() {
       }).should.throw();
       done();
     });
+
     it('should throw unless apiKey is given', function(done) {
       (function () {
         new BunyanRaygun({});
@@ -29,6 +30,26 @@ describe('bunyan-raygun', function() {
       (function () {
         logger.write(JSON.stringify({}));
       }).should.throw();
+      done();
+    });
+
+    it('should not throw if used as a raw stream', function(done) {
+      var logger = new BunyanRaygun({
+        apiKey: 'fake'
+      });
+      should.exist(logger);
+      logger.write({});
+      done();
+    });
+
+    it('should send logs with errors', function(done) {
+      var logger = new BunyanRaygun({
+        apiKey: 'fake'
+      });
+      should.exist(logger);
+      logger.write({
+        err: new Error('yo')
+      }).should.equal(true);
       done();
     });
   });

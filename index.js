@@ -21,7 +21,9 @@ BunyanRaygun.prototype.write = function(entry) {
 
   if (entry.err) {
     this._client.send(entry.err, undefined, undefined, entry.req);
+    return true;
   }
+  return false;
 };
 
 module.exports = BunyanRaygun;
