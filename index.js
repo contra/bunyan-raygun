@@ -20,7 +20,7 @@ BunyanRaygun.prototype.write = function(entry) {
   assert.object(entry, 'entry');
 
   if (entry.err) {
-    this._client.send(entry.err || entry, undefined, undefined, entry.req);
+    this._client.send(entry.err, undefined, undefined, entry.req);
   }
 };
 
