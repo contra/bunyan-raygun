@@ -52,5 +52,20 @@ describe('bunyan-raygun', function() {
       }).should.equal(true);
       done();
     });
+
+    it('should send logs with errors and a user getter', function(done) {
+      var logger = new BunyanRaygun({
+        apiKey: 'fake',
+        user: function(req){
+          should.exist(req);
+          done();
+        }
+      });
+      should.exist(logger);
+      logger.write({
+        err: new Error('yo'),
+        req: {}
+      }).should.equal(true);
+    });
   });
 });
