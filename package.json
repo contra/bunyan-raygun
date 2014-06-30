@@ -11,7 +11,7 @@
   "main": "./index.js",
   "dependencies": {
     "assert-plus": "^0.1.5",
-    "noop": "^0.2.2",
+    "node-noop": "0.0.1",
     "raygun": "^0.4.1"
   },
   "devDependencies": {

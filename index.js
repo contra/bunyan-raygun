@@ -2,7 +2,7 @@
 
 var Raygun = require('raygun');
 var assert = require('assert-plus');
-var noop = require('noop');
+var noop = require('node-noop').noop;
 
 function BunyanRaygun(opt){
   assert.object(opt, 'options');
