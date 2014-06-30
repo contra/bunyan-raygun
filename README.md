@@ -27,6 +27,12 @@ var transport = new BunyanRaygun({
   user: function(req) {
     // this is optional
     // see https://github.com/MindscapeHQ/raygun4node#unique-user-tracking
+  },
+  data: function(entry) {
+    // this is optional
+    // return an object with custom log data
+    // entry = the bunyan raw object, which has err and req attributes
+    // or whatever else you specified in your log call
   }
 });
 
