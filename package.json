@@ -11,6 +11,7 @@
   "main": "./index.js",
   "dependencies": {
     "assert-plus": "^0.1.5",
+    "lodash.omit": "^2.4.1",
     "node-noop": "0.0.1",
     "raygun": "^0.4.1"
   },

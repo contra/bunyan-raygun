@@ -2,7 +2,7 @@
 
 var Raygun = require('raygun');
 var assert = require('assert-plus');
-var noop = require('node-noop').noop;
+var omit = require('lodash.omit');
 
 function BunyanRaygun(opt){
   assert.object(opt, 'options');
@@ -16,15 +16,14 @@ function BunyanRaygun(opt){
   if (opt.user) {
     this._client.user = opt.user;
   }
-
-  this._data = opt.data || noop;
 }
 
 BunyanRaygun.prototype.write = function(entry) {
   assert.object(entry, 'entry');
 
   if (entry.err) {
-    this._client.send(entry.err, this._data(entry), undefined, entry.req);
+    var data = omit(entry, ['err', 'req']);
+    this._client.send(entry.err, data, undefined, entry.req);
     return true;
   }
   return false;
