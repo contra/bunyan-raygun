@@ -21,11 +21,18 @@ function BunyanRaygun(opt){
 BunyanRaygun.prototype.write = function(entry) {
   assert.object(entry, 'entry');
 
+  var data;
   if (entry.err) {
-    var data = omit(entry, ['err', 'req']);
+    data = omit(entry, ['err', 'req']);
     this._client.send(entry.err, data, undefined, entry.req);
     return true;
   }
+  else if (entry.msg) {
+    data = omit(entry, ['msg', 'req']);
+    this._client.send(entry.msg, data, undefined, entry.req);
+    return true;
+  }
+
   return false;
 };
 
